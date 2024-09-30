@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>装饰器模式</title>
+</head>
+<body>
+    <script>
+        Function.prototype.before = function(beforeFn) {
+            var _self = this; // 保存原函数的引用
+            return function() {
+                // 先进行前置函数调用
+                beforeFn.apply(this, arguments); // 传入this和参数
+
+                // 执行原来的函数
+                _self.apply(this, arguments);
+            }
+        }
+
+        Function.prototype.after = function(afterFn) {
+            var _self = this; // 保存原函数的引用
+            return function() {
+                var result = _self.apply(this, arguments); // 传入this和参数
+                // 先进行前置函数调用
+                afterFn.apply(this, arguments);
+
+                // 执行原来的函数
+                return result
+            }
+        }
+
+        function test() {
+            console.log("11111");
+        }
+
+        var test1 = test.before(function() {
+            console.log("00000");
+        }).after(function() {
+            console.log("22222");
+        });
+
+        test1();
+
+        // 00000
+        // 11111
+        // 22222
+    </script>
+</body>
+</html>

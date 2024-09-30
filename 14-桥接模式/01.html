@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>桥接模式</title>
+</head>
+
+<body>
+    <script>
+        function Aodi1(engine) {
+            this.engine = engine;
+        }
+
+        function Aodi2(engine) {
+            this.engine = engine;
+        }
+
+        Aodi1.prototype.platform = function () {
+            console.log("aodi1 平台");
+        }
+
+        Aodi2.prototype.platform = function () {
+            console.log("aodi2 平台");
+        }
+
+        Aodi1.prototype.loadEngine = function () {
+            this.engine.run();
+        }
+
+        Aodi2.prototype.loadEngine = function () {
+            this.engine.run();
+        }
+
+        function V6() {
+            this.run = function () {
+                console.log("V6发动机");
+            }
+        }
+
+        function V8() {
+            this.run = function () {
+                console.log("V8发动机");
+            }
+        }
+
+        function V12() {
+            this.run = function () {
+                console.log("V12发动机");
+            }
+        }
+
+        let aodi1 = new Aodi1(new V6());
+        let aodi2 = new Aodi1(new V8());
+        aodi1.loadEngine(); // V6发动机
+        aodi2.loadEngine(); // V8发动机
+
+        let aodi3 = new Aodi2(new V8());
+        aodi3.loadEngine(); // V8发动机
+    </script>
+</body>
+
+</html>

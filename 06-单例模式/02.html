@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单例模式-ES6</title>
+</head>
+
+<body>
+    <script>
+        class Singleton {
+            constructor(name, age) {
+                if (!Singleton.instance) {
+                    this.name = name;
+                    this.age = age;
+                    Singleton.instance = this;
+                }
+                
+                return Singleton.instance;
+            }
+        }
+
+        console.log(new Singleton("ellie", 18) === new Singleton("xiaoming", 18)); // true
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器模式</title>
+</head>
+
+<body>
+    <ul id="list">
+
+    </ul>
+    <script>
+        // 迭代方法
+        var ellieEach = function (arr, callback) {
+            for (let i = 0; i < arr.length; i++) {
+                callback(i, arr[i]);
+            }
+        }
+
+        ellieEach([1, 2, 3, 4], function (key, value) {
+            // 这里可以写业务逻辑
+            // console.log(key, value);
+            var oli = document.createElement('li');
+            oli.innerHTML = value;
+            list.appendChild(oli);
+        })
+
+        //ES6 Iterator
+
+        //Array map,set ,String ,arguments ,NodeList
+
+        var arr = ["kerwin", "xiaoming", "tiechui"];
+        console.log(arr);
+        // for(let i of arr){
+        //     console.log(i);
+        // }
+
+        let it = arr[Symbol.iterator]();
+        console.log(it);
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+        console.log(it.next());
+
+
+        var obj = {
+            0: "kerwin",
+            1: "tiechui",
+            2: "xiaoming",
+            length: 3,
+            [Symbol.iterator]: Array.prototype[Symbol.iterator]
+        }
+
+        for (let i of obj) {
+            console.log(i);
+        }
+    </script>
+</body>
+
+</html>

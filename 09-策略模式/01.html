@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>策略模式</title>
+</head>
+
+<body>
+    <script>
+        // function calBonus(level, salary) {
+        //     if (level === "A") {
+        //         return salary * 4;
+        //     }
+
+        //     if (level === "B") {
+        //         return salary * 3;
+        //     }
+
+        //     if (level === "C") {
+        //         return salary * 2;
+        //     }
+        // }
+        // 算法的實現
+        let strategry = {
+            "A": (salary) => {
+                return salary * 4;
+            },
+            "B": (salary) => {
+                return salary * 3;
+            },
+            "C": (salary) => {
+                return salary * 2;
+            }
+        }
+
+        // 算法的責任
+        function calBonus(level, salary) {
+            return strategry[level](salary);
+        }
+
+        calBonus("A", 10000);
+        calBonus("C", 8000);
+    </script>
+</body>
+
+</html>

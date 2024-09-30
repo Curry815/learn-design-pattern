@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迭代器模式</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            code: 200,
+            name: "ellie",
+            list: ["aaaa", "bbbb", "ccc"],
+            [Symbol.iterator]: function () { // 这里为了支持for of 需要添加一个迭代器
+                let index = 0;
+                return {
+                    next: () => {
+                        if (index < this.list.length) {
+                            return {
+                                value: this.list[index++],
+                                done: false
+                            }
+                        } else {
+                            return {
+                                value: undefined,
+                                done: true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        //for in
+
+
+        //for of
+
+        // var it = obj[Symbol.iterator]();
+        // console.log(it.next());
+        // console.log(it.next());
+        // console.log(it.next());
+        // console.log(it.next());
+        
+
+        for (let i of obj) {
+            console.log(i);
+        }
+    </script>
+</body>
+
+</html>

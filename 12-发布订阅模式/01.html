@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布订阅模式</title>
+</head>
+<body>
+    <script>
+        // 中央调度器
+        const PubSub = {
+            list: [],
+            publish() {
+                this.list.forEach(item => item());
+            },
+            subscribe(cb) {
+                this.list.push(cb);
+            },
+        }
+
+        function testA() {
+            console.log('testA');
+        }
+
+        function testB() { 
+            console.log('testB');
+        }
+
+        // subscribe订阅
+        PubSub.subscribe(testA);
+        PubSub.subscribe(testB);
+
+        // publish发布
+        PubSub.publish();
+
+    </script>
+</body>
+</html>

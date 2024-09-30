@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6的类模式</title>
+</head>
+<body>
+    <script>
+        class Employee {
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+
+            say() {
+                console.log(this.name+"-"+this.age);
+            }
+        }
+
+        let e1 = new Employee('小明', 18); 
+        console.log(e1); // Employee { name: '小明', age: 18 }
+        e1.say();
+    </script>
+</body>
+</html>

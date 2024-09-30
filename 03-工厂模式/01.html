@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工厂模式</title>
+</head>
+
+<body>
+    <script>
+        function User(role, pages) {
+            this.role = role;
+            this.pages = pages;
+        }
+
+        function UserFactory(role) {
+            switch (role) {
+                case "superadmin":
+                    return new User("superadmin", ["home", "user-manage", "right-manage", "news-manage"]);
+                case "admin":
+                    return new User("admin", ["home", "user-manage", "news-manage"]);
+                case "editor":
+                    return new User("editor", ["home", "news-manage"]);
+                default:
+                    throw new Error("Invalid role");
+            }
+        }
+
+        let user = UserFactory("admin");
+    </script>
+</body>
+
+</html>
